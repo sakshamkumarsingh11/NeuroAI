@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="https://img.shields.io/badge/NeuroVoiceAI-TBI%20Rehabilitation%20Platform-c0392b?style=for-the-badge&logo=brain&logoColor=white" alt="NeuroVoiceAI"/>
+<img src="https://img.shields.io/badge/NeuroVoiceAI-TBI%20Rehabilitation%20Platform-c0392b?style=for-the-badge&logo=brain&logoColor=white" alt="NeuroAI"/>
 
-# NeuroVoiceAI
+# NeuroAI
 ### AI-Powered Traumatic Brain Injury Rehabilitation Platform
 
 [![Python](https://img.shields.io/badge/Python-3.9--3.11-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
