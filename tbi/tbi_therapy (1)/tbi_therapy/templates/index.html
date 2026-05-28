@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Patients — TBI Therapy{% endblock %}
+
+{% block content %}
+<section class="card">
+  <div class="card-header">
+    <h2>Patients</h2>
+    <button class="btn btn-primary" onclick="togglePatientForm()">+ New patient</button>
+  </div>
+
+  <form id="patient-form" class="patient-form hidden" onsubmit="createPatient(event)">
+    <input name="name" placeholder="Full name" required>
+    <input name="age" type="number" placeholder="Age">
+    <input name="tbi_date" type="date" placeholder="TBI date">
+    <textarea name="notes" placeholder="Notes (optional)"></textarea>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+
+  {% if patients %}
+  <div class="patient-grid">
+    {% for p in patients %}
+    <a class="patient-card" href="{{ url_for('patient_view', patient_id=p.id) }}">
+      <div class="avatar">{{ p.name[0]|upper }}</div>
+      <div>
+        <strong>{{ p.name }}</strong>
+        {% if p.age %}<div class="muted">{{ p.age }} y/o</div>{% endif %}
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="muted">No patients yet. Click "+ New patient" to add one.</p>
+  {% endif %}
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function togglePatientForm() {
+  document.getElementById('patient-form').classList.toggle('hidden');
+}
+
+async function createPatient(e) {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const payload = Object.fromEntries(fd);
+  if (payload.age) payload.age = parseInt(payload.age, 10);
+  const res = await fetch('/api/patients', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload),
+  });
+  if (res.ok) location.reload();
+  else alert('Failed to create patient');
+}
+</script>
+{% endblock %}

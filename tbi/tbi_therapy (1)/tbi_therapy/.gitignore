@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+
+# Flask
+instance/
+.webassets-cache
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# macOS
+.DS_Store
+
+# Data
+data/uploads/*
+data/sessions/*
+data/tts_cache/*
+data/cmudict-0.7b
+!data/uploads/.gitkeep
+!data/sessions/.gitkeep
+!data/tts_cache/.gitkeep
+
+# Models (keep directory, ignore weights)
+models/*.pt
+!models/.gitkeep
+
+# Tests
+.pytest_cache/
+.coverage
+
+# Misc
+*.log
+temp.wav
+*.mp3
+!static/**/*.mp3

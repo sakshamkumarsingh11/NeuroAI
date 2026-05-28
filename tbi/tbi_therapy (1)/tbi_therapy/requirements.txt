@@ -1,0 +1,28 @@
+# Web framework
+Flask==3.0.3
+Flask-Cors==4.0.1
+
+# Speech processing
+allosaurus==1.0.2
+#openai-whisper==20231117
+librosa==0.10.2
+soundfile==0.12.1
+phonemizer==3.2.1
+
+# ML / RL
+torch==2.2.2
+numpy==1.26.4
+nltk==3.8.1
+
+# Facial analysis
+mediapipe==0.10.14
+opencv-python==4.10.0.84
+
+# TTS
+gTTS==2.5.3
+
+# Data
+pandas==2.2.2
+
+# Testing
+pytest==8.2.0

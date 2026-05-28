@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Session {{ session_id }}{% endblock %}
+
+{% block content %}
+<section class="card">
+  <div class="card-header">
+    <h2>Session #{{ session_id }}</h2>
+  </div>
+
+  {% if attempts %}
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Target</th>
+        <th>Accuracy</th>
+        <th>Severity</th>
+        <th>RL action</th>
+        <th>Next difficulty</th>
+        <th>Lip closure</th>
+        <th>Asymmetry</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for a in attempts %}
+      <tr>
+        <td>{{ a.timestamp[11:19] }}</td>
+        <td><code>{{ a.target_text }}</code></td>
+        <td>{{ "%.1f"|format(a.phoneme_acc or 0) }}%</td>
+        <td>
+          <span class="badge badge-{{ (a.severity or 'unknown')|lower }}">
+            {{ a.severity or "—" }}
+          </span>
+        </td>
+        <td>{{ a.rl_action or "—" }}</td>
+        <td>{{ a.rl_next_difficulty or "—" }}</td>
+        <td>{% if a.lip_closure is not none %}{{ "%.2f"|format(a.lip_closure) }}{% else %}—{% endif %}</td>
+        <td>{% if a.facial_asymmetry is not none %}{{ "%.3f"|format(a.facial_asymmetry) }}{% else %}—{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="muted">No attempts in this session.</p>
+  {% endif %}
+</section>
+{% endblock %}
